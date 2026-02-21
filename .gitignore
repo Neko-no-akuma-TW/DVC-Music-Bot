@@ -16,6 +16,9 @@ ENV/
 .env
 voice_channel.json
 
+# Archive files
+*.zip
+
 # IDEs
 .vscode/
 .idea/
