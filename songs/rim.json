@@ -1,0 +1,15 @@
+{
+	"singer": "Rim",
+	"songs": [
+		{
+			"title": "ノマネ",
+			"url": "https://www.youtube.com/watch?v=gXmRfl0V3es",
+			"aliases": ["No Money", "沒有錢"]
+		},
+		{
+			"title": "食虫植物",
+			"url": "https://www.youtube.com/watch?v=F9eCSWEJYjk",
+			"aliases": ["Carnivorous Plant", "食蟲植物"]
+		}
+	]
+}

@@ -1,0 +1,11 @@
+[project]
+name = "dynamicvoicechannel"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "py-cord[voice]>=2.7.0",
+    "python-dotenv>=1.2.1",
+    "yt-dlp>=2026.2.4",
+]

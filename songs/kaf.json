@@ -1,0 +1,45 @@
+{
+    "singer": "Kaf",
+    "songs": [
+        {
+            "title": "過去を喰らう",
+            "url": "https://www.youtube.com/watch?v=tMKrECxEpq8",
+            "aliases": ["過去を喰らう", "kako o kurau"]
+        },
+        {
+            "title": "雛鳥",
+            "url": "https://www.youtube.com/watch?v=M1RIUrgJqWw",
+            "aliases": ["雛鳥", "hinatori"]
+        },
+        {
+            "title": "不可解",
+            "url": "https://www.youtube.com/watch?v=NDOJZSG9SPU",
+            "aliases": ["不可解", "fukakai"]
+        },
+        {
+            "title": "そして花になる",
+            "url": "https://www.youtube.com/watch?v=y6TGSY9Zll0",
+            "aliases": ["そして花になる", "soshite hana ni naru"]
+        },
+        {
+            "title": "戸惑いテレパシー",
+            "url": "https://www.youtube.com/watch?v=3Dr91z1-Iug",
+            "aliases": ["戸惑いテレパシー", "tomadoi telepathy"]
+        },
+        {
+            "title": "糸",
+            "url": "https://www.youtube.com/watch?v=3Wtx6k2vInU",
+            "aliases": ["糸", "ito"]
+        },
+        {
+            "title": "心臓とからくり",
+            "url": "https://www.youtube.com/watch?v=hcm1LGOxJbc",
+            "aliases": ["心臓とからくり", "shinzou to karakuri"]
+        },
+        {
+            "title": "私論理",
+            "url": "https://www.youtube.com/watch?v=Z6wEJLnNxMs",
+            "aliases": ["私論理", "shironri"]
+        }
+    ]
+}
