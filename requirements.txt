@@ -1,3 +1,4 @@
 py-cord
 py-cord[voice]
 python-dotenv
+yt-dlp
