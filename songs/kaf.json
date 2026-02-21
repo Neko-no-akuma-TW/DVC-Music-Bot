@@ -4,7 +4,7 @@
         {
             "title": "過去を喰らう",
             "url": "https://www.youtube.com/watch?v=tMKrECxEpq8",
-            "aliases": ["過去を喰らう", "kako o kurau"]
+            "aliases": ["過去を喰らう", "kako o kurau", "Eat The Past"]
         },
         {
             "title": "雛鳥",
@@ -40,6 +40,16 @@
             "title": "私論理",
             "url": "https://www.youtube.com/watch?v=Z6wEJLnNxMs",
             "aliases": ["私論理", "shironri"]
+        },
+        {
+            "title": "邂逅",
+            "url": "https://www.youtube.com/watch?v=Q5DlTbOeNdQ",
+            "aliases": ["邂逅", "Chance of Meeting", "kaikou"]
+        },
+        {
+            "title": "一世風靡",
+            "url": "https://youtu.be/vtEfALKX40E",
+            "aliases": []
         }
     ]
 }
