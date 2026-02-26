@@ -1,15 +1,195 @@
 {
-	"singer": "Rim",
-	"songs": [
-		{
-			"title": "ノマネ",
-			"url": "https://www.youtube.com/watch?v=gXmRfl0V3es",
-			"aliases": ["No Money", "沒有錢"]
-		},
-		{
-			"title": "食虫植物",
-			"url": "https://www.youtube.com/watch?v=F9eCSWEJYjk",
-			"aliases": ["Carnivorous Plant", "食蟲植物"]
-		}
-	]
+    "singer": "RIM",
+    "songs": [
+        {
+            "title": "キャンディーゲリラ",
+            "url": "https://youtu.be/DAFlQJEFIWg?si=i6oE30dU4IjStZ1G",
+            "aliases": [
+                "キャンディーゲリラ",
+                "Candy Guerrilla"
+            ]
+        },
+        {
+            "title": "ノマネ",
+            "url": "https://www.youtube.com/watch?v=gXmRfl0V3es",
+            "aliases": [
+                "No Money",
+                "ノマネ"
+            ]
+        },
+        {
+            "title": "閃光だった",
+            "url": "https://www.youtube.com/watch?v=LYnF2X_mnBI",
+            "aliases": [
+                "閃光だった",
+                "INSIGHT"
+            ]
+        },
+        {
+            "title": "きみが大人になったんだ",
+            "url": "https://www.youtube.com/watch?v=nPN2mpKzEDI",
+            "aliases": [
+                "きみが大人になったんだ",
+                "Mutant Love"
+            ]
+        },
+        {
+            "title": "フロム天国",
+            "url": "https://www.youtube.com/watch?v=71wuolUoIm4",
+            "aliases": [
+                "フロム天国",
+                "from HEAVEN"
+            ]
+        },
+        {
+            "title": "おしえてかみさま",
+            "url": "https://www.youtube.com/watch?v=d2NvLXLnx9A",
+            "aliases": [
+                "おしえてかみさま",
+                "Divine Delays"
+            ]
+        },
+        {
+            "title": "ルフラン",
+            "url": "https://www.youtube.com/watch?v=6c-SCdU4rnA",
+            "aliases": [
+                "ルフラン",
+                "Mao Sasagawa"
+            ]
+        },
+        {
+            "title": "えろいむ",
+            "url": "https://www.youtube.com/watch?v=QFbZZBdTAwE",
+            "aliases": [
+                "えろいむ",
+                "Eloim"
+            ]
+        },
+        {
+            "title": "狂えない",
+            "url": "https://www.youtube.com/watch?v=TB9qe4ahzac",
+            "aliases": [
+                "狂えない",
+                "(Not) Lunatic"
+            ]
+        },
+        {
+            "title": "インナアチャイルド",
+            "url": "https://www.youtube.com/watch?v=QhP2Ko2wEjY",
+            "aliases": [
+                "インナアチャイルド",
+                "Inner Child"
+            ]
+        },
+        {
+            "title": "チクタクボーイ",
+            "url": "https://www.youtube.com/watch?v=tXpdOr7mx7U",
+            "aliases": [
+                "チクタクボーイ",
+                "Tick Tock Boy"
+            ]
+        },
+        {
+            "title": "ピルグリム",
+            "url": "https://www.youtube.com/watch?v=RoZRMSIdZ6U",
+            "aliases": [
+                "ピルグリム",
+                "Pilgrim"
+            ]
+        },
+        {
+            "title": "さみしいひと",
+            "url": "https://www.youtube.com/watch?v=gr2pXdiAHsg",
+            "aliases": [
+                "さみしいひと",
+                "Lonely"
+            ]
+        },
+        {
+            "title": "NEUROMANCE",
+            "url": "https://www.youtube.com/watch?v=LyTaD9pbI7M",
+            "aliases": [
+                "NEUROMANCE"
+            ]
+        },
+        {
+            "title": "やさしくしないで",
+            "url": "https://www.youtube.com/watch?v=nLFi_zEUXOs",
+            "aliases": [
+                "やさしくしないで",
+                "Don't be Kind to Me"
+            ]
+        },
+        {
+            "title": "十九月",
+            "url": "https://www.youtube.com/watch?v=EGhhBKr4OzY",
+            "aliases": [
+                "十九月",
+                "Septemdecember"
+            ]
+        },
+        {
+            "title": "胎児に月はキスをしない /",
+            "url": "https://www.youtube.com/watch?v=-dAz7Se-umM",
+            "aliases": [
+                "胎児に月はキスをしない /",
+                "The Moon Not Kiss the Baby"
+            ]
+        },
+        {
+            "title": "法螺話",
+            "url": "https://www.youtube.com/watch?v=EAW1zjldjO4",
+            "aliases": [
+                "法螺話",
+                "Tall Story"
+            ]
+        },
+        {
+            "title": "甘美な無法",
+            "url": "https://www.youtube.com/watch?v=VIR94m89mk0",
+            "aliases": [
+                "甘美な無法",
+                "Luscious Lawless"
+            ]
+        },
+        {
+            "title": "クライベイビー",
+            "url": "https://www.youtube.com/watch?v=OHvvN4XktQk",
+            "aliases": [
+                "クライベイビー",
+                "Cry Baby"
+            ]
+        },
+        {
+            "title": "Flowering",
+            "url": "https://www.youtube.com/watch?v=z1Nxc4UyQfQ",
+            "aliases": [
+                "Flowering"
+            ]
+        },
+        {
+            "title": "ピロウトーク",
+            "url": "https://www.youtube.com/watch?v=cUqQRAYEtKg",
+            "aliases": [
+                "ピロウトーク",
+                "Pillow Talk"
+            ]
+        },
+        {
+            "title": "食虫植物",
+            "url": "https://www.youtube.com/watch?v=F9eCSWEJYjk",
+            "aliases": [
+                "食虫植物",
+                "Carnivorous Plant"
+            ]
+        },
+        {
+            "title": "ユーエンミー",
+            "url": "https://www.youtube.com/watch?v=YZxHTW5sJu4",
+            "aliases": [
+                "ユーエンミー",
+                "You & Me"
+            ]
+        }
+    ]
 }
