@@ -1,12 +1,317 @@
 {
-    "singer": "VWP",
-    "songs": [
-        {
-            "title": "幻界",
-            "url": "https://www.youtube.com/watch?v=77GH0qHEsyU",
-            "aliases": [
-                "Genkai"
-            ]
-        }
-    ]
+	"singer": "VWP",
+	"songs": [
+		{
+			"title": "まほう",
+			"url": "https://www.youtube.com/watch?v=g8NbvGE8w6s",
+			"aliases": ["魔法", "Magic"]
+		},
+		{
+			"title": "深淵",
+			"url": "https://www.youtube.com/watch?v=kE9YpkWwHIo",
+			"aliases": ["Shinen"]
+		},
+		{
+			"title": "刻印",
+			"url": "https://www.youtube.com/watch?v=lBZt_ESNC6Q",
+			"aliases": ["Kokuin"]
+		},
+		{
+			"title": "牢獄",
+			"url": "https://www.youtube.com/watch?v=aJhvIQw96RI",
+			"aliases": ["Rougoku"]
+		},
+		{
+			"title": "暗闇",
+			"url": "https://www.youtube.com/watch?v=HpyoJ597oUU",
+			"aliases": ["Kurayami"]
+		},
+		{
+			"title": "泡沫",
+			"url": "https://www.youtube.com/watch?v=i9ApQA847dM",
+			"aliases": ["Bubble", "Utakata"]
+		},
+		{
+			"title": "古傷",
+			"url": "https://www.youtube.com/watch?v=QRtSvGPQBI0",
+			"aliases": ["Furukizu"]
+		},
+		{
+			"title": "生存",
+			"url": "https://www.youtube.com/watch?v=6x3pXFwI21w",
+			"aliases": ["Seizon"]
+		},
+		{
+			"title": "逆絶",
+			"url": "https://www.youtube.com/watch?v=JPbjBwNldr0",
+			"aliases": ["逆絕", "Gyakuzetsu"]
+		},
+		{
+			"title": "不的",
+			"url": "https://www.youtube.com/watch?v=sd6DTgsIbrs",
+			"aliases": ["Fearless"]
+		},
+		{
+			"title": "歯車",
+			"url": "https://www.youtube.com/watch?v=EQ_9QAKtUNY",
+			"aliases": ["齒車", "Haguruma"]
+		},
+		{
+			"title": "残火",
+			"url": "https://www.youtube.com/watch?v=5FoVSbCI4CM",
+			"aliases": ["殘火", "Nokoribi"]
+		},
+		{
+			"title": "素的",
+			"url": "https://www.youtube.com/watch?v=Pu-YwxQyy4A",
+			"aliases": ["Idyllic"]
+		},
+		{
+			"title": "魔的",
+			"url": "https://www.youtube.com/watch?v=--GSccjApZc",
+			"aliases": ["Magical"]
+		},
+		{
+			"title": "私的",
+			"url": "https://www.youtube.com/watch?v=yrnMKpGUHIg",
+			"aliases": ["Poetical"]
+		},
+		{
+			"title": "夢魔",
+			"url": "https://www.youtube.com/watch?v=GyJiouoPKUM",
+			"aliases": ["Incubus"]
+		},
+		{
+			"title": "本懐",
+			"url": "https://www.youtube.com/watch?v=P_h9ufrG5bE",
+			"aliases": ["本懷", "Crave"]
+		},
+
+
+
+		{
+			"title": "甘粒",
+			"url": "https://www.youtube.com/watch?v=isDXT7nMJuY",
+			"aliases": ["Sweet Raisins"]
+		},
+		{
+			"title": "愛憎",
+			"url": "https://www.youtube.com/watch?v=05zfUIMqZMo",
+			"aliases": ["Love and Hate"]
+		},
+		{
+			"title": "一服",
+			"url": "https://www.youtube.com/watch?v=1QXgnrfDKj0",
+			"aliases": ["Powder"]
+		},
+
+
+
+		{
+			"title": "機械の声",
+			"url": "https://www.youtube.com/watch?v=P_h9ufrG5bE",
+			"aliases": ["機械之聲", "The Voice of AI"]
+		},
+
+
+
+		{
+			"title": "電脳",
+			"url": "https://www.youtube.com/watch?v=z47I4VOGEJk",
+			"aliases": ["電腦", "Cyberbrains"]
+		},
+		{
+			"title": "輪廻",
+			"url": "https://www.youtube.com/watch?v=wGBXObhCThE",
+			"aliases": ["Reincarnation"]
+		},
+		{
+			"title": "変身",
+			"url": "https://www.youtube.com/watch?v=vj7Gmv7FC-0",
+			"aliases": ["變身", "The Metamorphosis"]
+		},
+		{
+			"title": "言霊",
+			"url": "https://www.youtube.com/watch?v=_30dknX-UWE",
+			"aliases": ["言靈", "Spirit"]
+		},
+		{
+			"title": "共鳴",
+			"url": "https://www.youtube.com/watch?v=ar0nuMEBmfY",
+			"aliases": ["Resonance"]
+		},
+		{
+			"title": "再会",
+			"url": "https://www.youtube.com/watch?v=I3ViLE5iC54",
+			"aliases": ["再會", "Reunion"]
+		},
+		{
+			"title": "魔女(真)",
+			"url": "https://www.youtube.com/watch?v=mfM9N7dHNTE",
+			"aliases": ["The Witches -true-", "Witch(true)"]
+		},
+		{
+			"title": "定命",
+			"url": "https://www.youtube.com/watch?v=zY_ZF1UfSCk",
+			"aliases": ["Destiny"]
+		},
+		{
+			"title": "玩具",
+			"url": "https://www.youtube.com/watch?v=Q97m911CsIM",
+			"aliases": ["Toy"]
+		},
+		{
+			"title": "飛翔",
+			"url": "https://www.youtube.com/watch?v=isRJHa-7QXE",
+			"aliases": ["Soaring The Sky"]
+		},
+		{
+			"title": "祭壇",
+			"url": "https://www.youtube.com/watch?v=DxGTANfhBW8",
+			"aliases": ["Saidan"]
+		},
+		{
+			"title": "秘密",
+			"url": "https://www.youtube.com/watch?v=zpfMTWC0wUc",
+			"aliases": ["Secret"]
+		},
+		{
+			"title": "感情",
+			"url": "https://www.youtube.com/watch?v=LXVKBPWkEK0",
+			"aliases": ["Emotion"]
+		},
+		{
+			"title": "切札",
+			"url": "https://www.youtube.com/watch?v=VgK05Au7jUo",
+			"aliases": ["王牌", "Trump Card"]
+		},
+		{
+			"title": "同盟",
+			"url": "https://www.youtube.com/watch?v=lAM3diipp7Y",
+			"aliases": ["Union"]
+		},
+		{
+			"title": "花束",
+			"url": "https://www.youtube.com/watch?v=3cJzGD9xkzg",
+			"aliases": ["Bouqet"]
+		},
+		{
+			"title": "未遂",
+			"url": "https://www.youtube.com/watch?v=eJUiS9YSuSM",
+			"aliases": ["Underway"]
+		},
+		{
+			"title": "強気",
+			"url": "https://www.youtube.com/watch?v=kZpPtk3LQo0",
+			"aliases": ["強氣", "Bullish"]
+		},
+		{
+			"title": "暁光",
+			"url": "https://www.youtube.com/watch?v=VuP30poJodA",
+			"aliases": ["曉光", "Dawn Light"]
+		},
+		{
+			"title": "真偽",
+			"url": "https://www.youtube.com/watch?v=HU9qlCfxml0",
+			"aliases": ["Magi"]
+		},
+		{
+			"title": "神話",
+			"url": "https://www.youtube.com/watch?v=0xP_CywwW94",
+			"aliases": ["Mythology"]
+		},
+		{
+			"title": "愛詩",
+			"url": "https://www.youtube.com/watch?v=F0ImgyqExvU",
+			"aliases": ["AIUTA"]
+		},
+		{
+			"title": "追憶",
+			"url": "https://www.youtube.com/watch?v=m9UFr5RyZeE",
+			"aliases": ["Chase the Day"]
+		},
+		{
+			"title": "歌姫",
+			"url": "https://www.youtube.com/watch?v=yMM8hrAnbTc",
+			"aliases": ["DIVA"]
+		},
+		{
+			"title": "欲望",
+			"url": "https://www.youtube.com/watch?v=RVcJUSYS6_8",
+			"aliases": ["Desire"]
+		},
+		{
+			"title": "照射",
+			"url": "https://www.youtube.com/watch?v=MKhWuMfCLHI",
+			"aliases": ["Irradiation"]
+		},
+		{
+			"title": "幻界",
+			"url": "https://www.youtube.com/watch?v=77GH0qHEsyU",
+			"aliases": ["The Phantom World"]
+		},
+
+
+
+		{
+			"title": "宣戦",
+			"url": "https://www.youtube.com/watch?v=VQhcEslsZw4",
+			"aliases": ["宣戰", "A declaration of war"]
+		},
+		{
+			"title": "明日",
+			"url": "https://www.youtube.com/watch?v=26ABqMP7B70",
+			"aliases": ["Tomorrow"]
+		},
+		{
+			"title": "分裂",
+			"url": "https://www.youtube.com/watch?v=NtuchYSJxC4",
+			"aliases": ["Split"]
+		},
+		{
+			"title": "遊戯",
+			"url": "https://www.youtube.com/watch?v=yG3WHjr4JeA",
+			"aliases": ["遊戲", "The Game"]
+		},
+		{
+			"title": "天命",
+			"url": "https://www.youtube.com/watch?v=ckMSgmiP0cY",
+			"aliases": ["Fate"]
+		},
+		{
+			"title": "反逆",
+			"url": "https://www.youtube.com/watch?v=0MDQniAndHo",
+			"aliases": ["Rebellion"]
+		},
+		{
+			"title": "流転",
+			"url": "https://www.youtube.com/watch?v=jKhdROvPa8Y",
+			"aliases": ["流轉", "Reincarnation"]
+		},
+		{
+			"title": "決意",
+			"url": "https://www.youtube.com/watch?v=6t_XAStgwsk",
+			"aliases": ["Determination"]
+		},
+		{
+			"title": "点灯",
+			"url": "https://www.youtube.com/watch?v=IVWEUUCNn4E",
+			"aliases": ["點燈", "Lights"]
+		},
+		{
+			"title": "終点",
+			"url": "https://www.youtube.com/watch?v=tX3zOtpWjvc",
+			"aliases": ["終點", "Terminal"]
+		},
+		{
+			"title": "言葉",
+			"url": "https://www.youtube.com/watch?v=-rSXJgdZivM",
+			"aliases": ["Magic of Words"]
+		},
+		{
+			"title": "命海",
+			"url": "https://www.youtube.com/watch?v=Ga3Y2rmdmO4",
+			"aliases": ["Vitalis"]
+		}
+	]
 }
