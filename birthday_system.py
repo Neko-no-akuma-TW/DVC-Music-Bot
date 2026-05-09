@@ -75,23 +75,43 @@ class BirthdaySystem(commands.Cog):
 
     birthday = discord.SlashCommandGroup("birthday", "生日紀錄系統相關指令")
 
-    @birthday.command(name="set", description="設定您的生日")
+    @birthday.command(name="set", description="設定您的生日 (年份請使用西元年)")
     async def set_birthday(
         self, 
         ctx: discord.ApplicationContext, 
-        month: discord.Option(int, "月份", min_value=1, max_value=12),
-        day: discord.Option(int, "日期", min_value=1, max_value=31),
-        year: discord.Option(int, "年份 (選填，用於計算年齡)", min_value=1900, max_value=2100, required=False)
+        date: discord.Option(str, "格式: YYYY-MM-DD 或 MM-DD (例如: 2000-10-01 或 10-01)")
     ):
+        # 統一分隔符號
+        normalized_date = date.replace("/", "-").replace(".", "-")
+        
+        parsed_year = None
+        parsed_month = None
+        parsed_day = None
+
+        # 嘗試解析 YYYY-MM-DD
+        try:
+            dt = datetime.strptime(normalized_date, "%Y-%m-%d")
+            parsed_year = dt.year
+            parsed_month = dt.month
+            parsed_day = dt.day
+        except ValueError:
+            # 嘗試解析 MM-DD
+            try:
+                dt = datetime.strptime(normalized_date, "%m-%d")
+                parsed_month = dt.month
+                parsed_day = dt.day
+            except ValueError:
+                return await ctx.respond("❌ 日期格式錯誤！請使用 `YYYY-MM-DD` 或 `MM-DD` (例如: `2000-10-01` 或 `10-01`)。", ephemeral=True)
+
         self.data["birthdays"][str(ctx.author.id)] = {
-            "month": month,
-            "day": day,
-            "year": year
+            "month": parsed_month,
+            "day": parsed_day,
+            "year": parsed_year
         }
         self.save_data()
         
-        year_str = f"{year}年" if year else ""
-        await ctx.respond(f"✅ 已成功設定您的生日為 {year_str}{month}月{day}日！", ephemeral=True)
+        year_str = f"**{parsed_year}** 年 " if parsed_year else ""
+        await ctx.respond(f"✅ 已成功設定您的生日為 {year_str}**{parsed_month}** 月 **{parsed_day}** 日！(西元格式)", ephemeral=True)
 
     @birthday.command(name="remove", description="移除您的生日紀錄")
     async def remove_birthday(self, ctx: discord.ApplicationContext):
