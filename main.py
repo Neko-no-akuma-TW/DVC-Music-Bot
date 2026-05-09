@@ -3,11 +3,13 @@ import json
 from dotenv import load_dotenv
 import os
 from guess_game import setup_guess_commands
+from birthday_system import setup_birthday_system
 
 # --- 全域設定 ---
 load_dotenv()
 bot = discord.Bot(intents=discord.Intents.all(), allowed_mentions=discord.AllowedMentions.none())
 setup_guess_commands(bot)
+setup_birthday_system(bot)
 CONFIG_FILE = "voice_channel.json"
 bot_config = {} # 用於快取設定的記憶體變數
 

@@ -15,6 +15,7 @@ ENV/
 # Configuration and secrets
 .env
 voice_channel.json
+birthdays.json
 
 # Archive files
 *.zip
