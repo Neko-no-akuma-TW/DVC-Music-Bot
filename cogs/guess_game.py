@@ -1,11 +1,12 @@
 import discord
+from discord.ext import commands
 import json
 import random
 import asyncio
 import yt_dlp
 import os
 
-# YTDL 設定
+# --- 全域變數與設定 ---
 ytdl_format_options = {
     'format': 'bestaudio/best',
     'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
@@ -21,8 +22,82 @@ ytdl_format_options = {
 }
 
 ytdl = yt_dlp.YoutubeDL(ytdl_format_options)
+active_games = {} # 移回模組級別，方便 Autocomplete 存取
 
-active_games = {}
+# --- Autocomplete 輔助函數 (放在類別外) ---
+
+def get_singer_options(ctx: discord.AutocompleteContext):
+    """自動偵測 songs/ 資料夾下的所有藝人 JSON"""
+    if not os.path.exists("songs"):
+        return []
+
+    choices = []
+    user_input = ctx.value.lower()
+
+    all_label = "綜合挑戰 (全藝人)"
+    if not user_input or user_input in all_label.lower():
+        choices.append(discord.OptionChoice(name=all_label, value="__all__"))
+
+    for filename in os.listdir("songs"):
+        if filename.endswith(".json"):
+            singer_id = filename.replace(".json", "")
+            file_path = f"songs/{filename}"
+            try:
+                with open(file_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    singer_name = data.get("singer", singer_id)
+                    if not user_input or user_input in singer_name.lower():
+                        choices.append(discord.OptionChoice(name=singer_name, value=singer_id))
+            except:
+                continue
+
+    return choices[:25]
+
+def get_song_options(ctx: discord.AutocompleteContext):
+    """AutoComplete 歌名邏輯"""
+    guild_id = ctx.interaction.guild_id
+    game_state = active_games.get(guild_id)
+
+    if not game_state or not game_state.get("active"):
+        return [discord.OptionChoice(name="目前沒有進行中的遊戲", value="none")]
+
+    singer_id = game_state["singer_id"]
+    user_input = ctx.value.lower()
+    choices = []
+
+    def collect_from_file(file_path):
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                for song in data['songs']:
+                    title = song['title']
+                    aliases = song.get('aliases', [])
+                    if user_input in title.lower():
+                        if not any(c.value == title for c in choices):
+                            choices.append(discord.OptionChoice(name=title, value=title))
+                        if len(choices) >= 25: return True
+                        continue
+                    for alias in aliases:
+                        if user_input in alias.lower():
+                            if not any(c.value == title for c in choices):
+                                choices.append(discord.OptionChoice(name=f"{title} ({alias})", value=title))
+                            if len(choices) >= 25: return True
+                            break
+        except:
+            pass
+        return False
+
+    if singer_id == "__all__":
+        for filename in os.listdir("songs"):
+            if filename.endswith(".json"):
+                if collect_from_file(f"songs/{filename}"):
+                    break
+    else:
+        file_path = f"songs/{singer_id}.json"
+        if os.path.exists(file_path):
+            collect_from_file(file_path)
+
+    return choices[:25]
 
 class YTDLSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=0.5, actual_start=0):
@@ -59,92 +134,13 @@ class YTDLSource(discord.PCMVolumeTransformer):
         except Exception as e:
             raise e
 
-def get_singer_options(ctx: discord.AutocompleteContext):
-    """自動偵測 songs/ 資料夾下的所有藝人 JSON"""
-    if not os.path.exists("songs"):
-        return []
+class GuessGame(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
 
-    choices = []
-    user_input = ctx.value.lower()
-
-    # 加入綜合挑戰選項
-    all_label = "綜合挑戰 (全藝人)"
-    if not user_input or user_input in all_label.lower():
-        choices.append(discord.OptionChoice(name=all_label, value="__all__"))
-
-    for filename in os.listdir("songs"):
-        if filename.endswith(".json"):
-            singer_id = filename.replace(".json", "")
-            file_path = f"songs/{filename}"
-            try:
-                with open(file_path, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                    singer_name = data.get("singer", singer_id)
-                    # 匹配搜尋字串，如果使用者還沒輸入則全部列出
-                    if not user_input or user_input in singer_name.lower():
-                        choices.append(discord.OptionChoice(name=singer_name, value=singer_id))
-            except json.JSONDecodeError as e:
-                print(f"Error decoding {file_path}: {e}")
-                continue
-            except Exception as e:
-                print(f"Error reading {file_path}: {e}")
-                continue
-
-    return choices[:25] # Discord 限制
-
-def get_song_options(ctx: discord.AutocompleteContext):
-    """AutoComplete 歌名邏輯"""
-    guild_id = ctx.interaction.guild_id
-    game_state = active_games.get(guild_id)
-
-    if not game_state or not game_state.get("active"):
-        return [discord.OptionChoice(name="目前沒有進行中的遊戲", value="none")]
-
-    singer_id = game_state["singer_id"]
-    user_input = ctx.value.lower()
-    choices = []
-
-    def collect_from_file(file_path):
-        try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                for song in data['songs']:
-                    title = song['title']
-                    aliases = song.get('aliases', [])
-
-                    # 判斷標題
-                    if user_input in title.lower():
-                        if not any(c.value == title for c in choices):
-                            choices.append(discord.OptionChoice(name=title, value=title))
-                        if len(choices) >= 25: return True
-                        continue
-
-                    # 判斷別名
-                    for alias in aliases:
-                        if user_input in alias.lower():
-                            if not any(c.value == title for c in choices):
-                                choices.append(discord.OptionChoice(name=f"{title} ({alias})", value=title))
-                            if len(choices) >= 25: return True
-                            break
-        except:
-            pass
-        return False
-
-    if singer_id == "__all__":
-        for filename in os.listdir("songs"):
-            if filename.endswith(".json"):
-                if collect_from_file(f"songs/{filename}"):
-                    break
-    else:
-        file_path = f"songs/{singer_id}.json"
-        if os.path.exists(file_path):
-            collect_from_file(file_path)
-
-    return choices[:25]
-
-def setup_guess_commands(bot):
-    @bot.slash_command(name="guess", description="開始猜歌挑戰")
+    @discord.slash_command(name="guess", description="開始猜歌挑戰")
     async def guess(
+            self,
             ctx: discord.ApplicationContext,
             singer: discord.Option(str, "選擇藝人", autocomplete=get_singer_options)
     ):
@@ -176,7 +172,7 @@ def setup_guess_commands(bot):
         else:
             file_path = f"songs/{singer}.json"
             if not os.path.exists(file_path):
-                return await ctx.respond(f"找不到藝人 `{singer}` 的題庫，請檢查檔案是否存在於 songs/ 資料夾中。", ephemeral=True)
+                return await ctx.respond(f"找不到藝人 `{singer}` 的題庫。", ephemeral=True)
 
             try:
                 with open(file_path, "r", encoding="utf-8") as f:
@@ -186,8 +182,6 @@ def setup_guess_commands(bot):
                     current_song = random.choice(all_songs)
             except Exception as e:
                 return await ctx.respond(f"題庫檔案 `{singer}.json` 讀取失敗：{e}", ephemeral=True)
-
-        json_start_time = current_song.get("start_time")
 
         active_games[guild_id] = {
             "singer_id": singer,
@@ -209,7 +203,7 @@ def setup_guess_commands(bot):
 
             await ctx.guild.change_voice_state(channel=ctx.author.voice.channel, self_deaf=True)
 
-            player = await YTDLSource.from_url(current_song['url'], loop=bot.loop, stream=True, start_time=json_start_time)
+            player = await YTDLSource.from_url(current_song['url'], loop=self.bot.loop, stream=True, start_time=current_song.get("start_time"))
             vc.play(player)
 
             for _ in range(30):
@@ -227,8 +221,9 @@ def setup_guess_commands(bot):
         finally:
             if vc and vc.is_connected(): await vc.disconnect()
 
-    @bot.slash_command(name="answer", description="回答猜歌答案")
+    @discord.slash_command(name="answer", description="回答猜歌答案")
     async def answer(
+            self,
             ctx: discord.ApplicationContext,
             song_name: discord.Option(str, "選擇歌名", autocomplete=get_song_options)
     ):
@@ -237,7 +232,6 @@ def setup_guess_commands(bot):
         if not game_state or not game_state.get("active"):
             return await ctx.respond("目前沒有進行中的遊戲。", ephemeral=True)
 
-        # 1. 確保使用者所在的語音頻道跟機器人所在的語音頻道一致
         if not ctx.author.voice or not ctx.voice_client or ctx.author.voice.channel != ctx.voice_client.channel:
             return await ctx.respond("您必須在機器人所在的語音頻道中才能回答！", ephemeral=True)
 
@@ -252,3 +246,6 @@ def setup_guess_commands(bot):
             if ctx.voice_client: ctx.voice_client.stop()
         else:
             await ctx.respond(f"❌ 答錯囉！", ephemeral=True)
+
+def setup(bot):
+    bot.add_cog(GuessGame(bot))

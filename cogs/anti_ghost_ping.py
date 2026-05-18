@@ -75,5 +75,5 @@ class AntiGhostPing(commands.Cog):
         if lost_mentions or lost_roles or lost_everyone:
             await self._handle_ghost_ping(before, lost_mentions, "編輯", lost_roles=lost_roles, lost_everyone=lost_everyone)
 
-def setup_anti_ghost_ping(bot):
+def setup(bot):
     bot.add_cog(AntiGhostPing(bot))

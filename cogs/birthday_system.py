@@ -32,7 +32,7 @@ class BirthdaySystem(commands.Cog):
 
         now = datetime.now()
         today_str = now.strftime("%Y-%m-%d")
-        
+
         # 如果今天已經檢查過，就跳過
         if self.data.get("last_check") == today_str:
             return
@@ -54,7 +54,7 @@ class BirthdaySystem(commands.Cog):
                         if bday.get("year"):
                             age = now.year - bday["year"]
                             age_str = f" 今年 **{age}** 歲了！"
-                        
+
                         embed = discord.Embed(
                             title="🎂 生日快樂！",
                             description=f"今天是 {user.mention} 的生日！{age_str}\n讓我們一起祝他生日快樂！ ✨",
@@ -77,13 +77,13 @@ class BirthdaySystem(commands.Cog):
 
     @birthday.command(name="set", description="設定您的生日 (年份請使用西元年)")
     async def set_birthday(
-        self, 
-        ctx: discord.ApplicationContext, 
-        date: discord.Option(str, "格式: YYYY-MM-DD 或 MM-DD (例如: 2000-10-01 或 10-01)")
+            self,
+            ctx: discord.ApplicationContext,
+            date: discord.Option(str, "格式: YYYY-MM-DD 或 MM-DD (例如: 2000-10-01 或 10-01)")
     ):
         # 統一分隔符號
         normalized_date = date.replace("/", "-").replace(".", "-")
-        
+
         parsed_year = None
         parsed_month = None
         parsed_day = None
@@ -109,7 +109,7 @@ class BirthdaySystem(commands.Cog):
             "year": parsed_year
         }
         self.save_data()
-        
+
         year_str = f"**{parsed_year}** 年 " if parsed_year else ""
         await ctx.respond(f"✅ 已成功設定您的生日為 {year_str}**{parsed_month}** 月 **{parsed_day}** 日！(西元格式)", ephemeral=True)
 
@@ -126,13 +126,13 @@ class BirthdaySystem(commands.Cog):
     @birthday.command(name="setup_channel", description="[管理員] 設定生日祝賀訊息發送的頻道")
     @commands.has_permissions(administrator=True)
     async def setup_channel(
-        self, 
-        ctx: discord.ApplicationContext, 
-        channel: discord.Option(discord.TextChannel, "選擇頻道")
+            self,
+            ctx: discord.ApplicationContext,
+            channel: discord.Option(discord.TextChannel, "選擇頻道")
     ):
         self.data["channel_id"] = channel.id
         self.save_data()
         await ctx.respond(f"✅ 生日祝賀頻道已設定為 {channel.mention}。", ephemeral=True)
 
-def setup_birthday_system(bot):
+def setup(bot):
     bot.add_cog(BirthdaySystem(bot))
