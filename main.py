@@ -4,12 +4,16 @@ from dotenv import load_dotenv
 import os
 from guess_game import setup_guess_commands
 from birthday_system import setup_birthday_system
+from treehole import setup_treehole_system
+from anti_ghost_ping import setup_anti_ghost_ping
 
 # --- 全域設定 ---
 load_dotenv()
 bot = discord.Bot(intents=discord.Intents.all(), allowed_mentions=discord.AllowedMentions.none())
 setup_guess_commands(bot)
 setup_birthday_system(bot)
+setup_treehole_system(bot)
+setup_anti_ghost_ping(bot)
 CONFIG_FILE = "voice_channel.json"
 bot_config = {} # 用於快取設定的記憶體變數
 
@@ -134,7 +138,7 @@ async def add_manager(ctx: discord.ApplicationContext, user: discord.Option(disc
     if vc_id_str in channels and channels[vc_id_str].get("owner_id") == ctx.author.id:
         managers = channels[vc_id_str].setdefault("manager_ids", [])
         if user.id in managers: return await ctx.respond(f"{user.mention} 已經是管理員了。", ephemeral=True)
-        
+
         managers.append(user.id)
         save_config()
         await ctx.respond(f"已新增 {user.mention} 為此頻道的管理員。", ephemeral=False)
