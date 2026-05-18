@@ -39,9 +39,9 @@ class YTDLSource(discord.PCMVolumeTransformer):
             data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=not stream))
             if 'entries' in data:
                 data = data['entries'][0]
-            
+
             duration = data.get('duration')
-            
+
             if start_time is None:
                 if duration and duration > 40:
                     actual_start = random.randint(0, int(duration - 35))
@@ -63,15 +63,15 @@ def get_singer_options(ctx: discord.AutocompleteContext):
     """自動偵測 songs/ 資料夾下的所有藝人 JSON"""
     if not os.path.exists("songs"):
         return []
-    
+
     choices = []
     user_input = ctx.value.lower()
-    
+
     # 加入綜合挑戰選項
     all_label = "綜合挑戰 (全藝人)"
     if not user_input or user_input in all_label.lower():
         choices.append(discord.OptionChoice(name=all_label, value="__all__"))
-    
+
     for filename in os.listdir("songs"):
         if filename.endswith(".json"):
             singer_id = filename.replace(".json", "")
@@ -89,14 +89,14 @@ def get_singer_options(ctx: discord.AutocompleteContext):
             except Exception as e:
                 print(f"Error reading {file_path}: {e}")
                 continue
-    
+
     return choices[:25] # Discord 限制
 
 def get_song_options(ctx: discord.AutocompleteContext):
     """AutoComplete 歌名邏輯"""
     guild_id = ctx.interaction.guild_id
     game_state = active_games.get(guild_id)
-    
+
     if not game_state or not game_state.get("active"):
         return [discord.OptionChoice(name="目前沒有進行中的遊戲", value="none")]
 
@@ -111,14 +111,14 @@ def get_song_options(ctx: discord.AutocompleteContext):
                 for song in data['songs']:
                     title = song['title']
                     aliases = song.get('aliases', [])
-                    
+
                     # 判斷標題
                     if user_input in title.lower():
                         if not any(c.value == title for c in choices):
                             choices.append(discord.OptionChoice(name=title, value=title))
                         if len(choices) >= 25: return True
                         continue
-                    
+
                     # 判斷別名
                     for alias in aliases:
                         if user_input in alias.lower():
@@ -139,14 +139,14 @@ def get_song_options(ctx: discord.AutocompleteContext):
         file_path = f"songs/{singer_id}.json"
         if os.path.exists(file_path):
             collect_from_file(file_path)
-    
+
     return choices[:25]
 
 def setup_guess_commands(bot):
     @bot.slash_command(name="guess", description="開始猜歌挑戰")
     async def guess(
-        ctx: discord.ApplicationContext, 
-        singer: discord.Option(str, "選擇藝人", autocomplete=get_singer_options)
+            ctx: discord.ApplicationContext,
+            singer: discord.Option(str, "選擇藝人", autocomplete=get_singer_options)
     ):
         if not ctx.author.voice:
             return await ctx.respond("你必須先加入語音頻道！", ephemeral=True)
@@ -157,7 +157,7 @@ def setup_guess_commands(bot):
 
         all_songs = []
         singer_name = ""
-        
+
         if singer == "__all__":
             singer_name = "綜合挑戰"
             for filename in os.listdir("songs"):
@@ -207,14 +207,16 @@ def setup_guess_commands(bot):
             else:
                 vc = await ctx.author.voice.channel.connect()
 
+            await ctx.guild.change_voice_state(channel=ctx.author.voice.channel, self_deaf=True)
+
             player = await YTDLSource.from_url(current_song['url'], loop=bot.loop, stream=True, start_time=json_start_time)
             vc.play(player)
-            
+
             for _ in range(30):
                 await asyncio.sleep(1)
                 if not active_games.get(guild_id, {}).get("active"):
                     break
-            
+
             if active_games.get(guild_id, {}).get("active"):
                 await ctx.send(f"⏰ 時間到！這首歌是：**{current_song['title']}** (來自: {current_song.get('singer_origin', singer_name)})")
                 active_games[guild_id]["active"] = False
@@ -227,14 +229,14 @@ def setup_guess_commands(bot):
 
     @bot.slash_command(name="answer", description="回答猜歌答案")
     async def answer(
-        ctx: discord.ApplicationContext,
-        song_name: discord.Option(str, "選擇歌名", autocomplete=get_song_options)
+            ctx: discord.ApplicationContext,
+            song_name: discord.Option(str, "選擇歌名", autocomplete=get_song_options)
     ):
         guild_id = ctx.guild_id
         game_state = active_games.get(guild_id)
         if not game_state or not game_state.get("active"):
             return await ctx.respond("目前沒有進行中的遊戲。", ephemeral=True)
-        
+
         # 1. 確保使用者所在的語音頻道跟機器人所在的語音頻道一致
         if not ctx.author.voice or not ctx.voice_client or ctx.author.voice.channel != ctx.voice_client.channel:
             return await ctx.respond("您必須在機器人所在的語音頻道中才能回答！", ephemeral=True)
