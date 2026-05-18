@@ -16,6 +16,12 @@ class MessageLogger(commands.Cog):
         if message.author.bot or not message.guild:
             return
 
+        # 排除在 Twitter 修正頻道中因為自動轉換連結而產生的刪除記錄
+        fix_vx_id = self.bot.config.get("fix_vx_channel_id")
+        if message.channel.id == fix_vx_id:
+            if message.content and ("x.com" in message.content or "twitter.com" in message.content):
+                return
+
         log_channel = self._get_log_channel(message.guild)
         if not log_channel:
             return
