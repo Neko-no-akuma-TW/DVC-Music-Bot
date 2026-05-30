@@ -15,9 +15,18 @@ class AntiGhostPing(commands.Cog):
             return
 
         # 1. 在原頻道發送簡短幽靈提及提醒（不顯示原始內容、已刪除內容等）
+        targets_list = []
+        if lost_everyone:
+            targets_list.append("@everyone / @here")
+        if filtered_mentions:
+            targets_list.extend([m.mention for m in filtered_mentions])
+        if lost_roles:
+            targets_list.extend([r.mention for r in lost_roles])
+        targets_str = " ".join(targets_list)
+
         channel_embed = discord.Embed(
             title="👻 偵測到幽靈提及 (Ghost Ping)！",
-            description=f"有一個由 {message.author.mention} 發送的提及被刪除了。",
+            description=f"有一個 {message.author.mention} 提及 {targets_str} 的訊息內容被{action_type}了。",
             color=discord.Color.from_rgb(255, 87, 87), # 鮮紅色
             timestamp=discord.utils.utcnow()
         )
