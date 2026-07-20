@@ -15,6 +15,7 @@ ENV/
 # Configuration and secrets
 .env
 config.json
+config.ini
 voice_channel.json
 birthdays.json
 
@@ -24,3 +25,7 @@ birthdays.json
 # IDEs
 .vscode/
 .idea/
+
+# Investigation Recording Feature (Local Only - Do Not Push)
+cogs/investigation_recording.py
+recordings/
